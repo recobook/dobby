@@ -23,8 +23,4 @@ export const deleteImage =  async (filename:string) => {
     return await dataImage.deleteImage(filename)
 }
 
-export const findImage =  async (filename:string) => {
-    
-    return dataImage.findImage(filename)
-}
 
