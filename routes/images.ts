@@ -48,7 +48,7 @@ route.get("/images/:filename", async (context)  => {
     await send(context,`/images/${filename}`,{root: `${Deno.cwd()}/storage`})
   } catch (e) {
     
-    context.response.status = 500
+    context.response.status = 404
     context.response.body = {status: false }    
   }
 });

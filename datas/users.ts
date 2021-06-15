@@ -5,14 +5,14 @@ export default {
   addImage: async (files: FormFile[]) => {
     for (const file in files) {
       await Deno.writeFile(
-        path.join("storage", "images", files[file].filename),
+        path.join("storage", "users", files[file].filename),
         files[file].content
       );
     }
     return true;
   },
   deleteImage: async (filename: string) => {
-    await Deno.remove(path.join("storage", "images", filename));
+    await Deno.remove(path.join("storage", "users", filename));
 
     return true;
   },
