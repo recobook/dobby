@@ -15,8 +15,8 @@
 
 # Funcionalidades 
 
-* Mantem imagens (elos,usuarios)
-* Mantém videos (elos)
+* Manter images (elos,usuarios)
+* Manter videos (elos)
 
 ## Licença 📝
 
