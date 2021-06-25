@@ -2,13 +2,13 @@ import {
   FormFile,
   multiParser,
 } from "https://deno.land/x/multiparser@v2.1.0/mod.ts";
-import { Router,send } from "https://deno.land/x/oak@v7.5.0/mod.ts";
+import { Router,send} from "https://deno.land/x/oak@v7.5.0/mod.ts";
 import { addImage,deleteImage } from "../services/images.ts";
-
+import {core} from '../services/auth.ts'
 
 const route = new Router();
 
-route.post("/image", async ({ request,response }) => {
+route.post("/image", core,async ({ request,response},) => {
   try {
     const form = await multiParser(request.originalRequest);
     const files: FormFile[] = form?.files as unknown as FormFile[]
@@ -25,7 +25,7 @@ route.post("/image", async ({ request,response }) => {
 });
 
 
-route.delete("/image/:filename", async ({response,params}) => {
+route.delete("/image/:filename", core,async ({response,params}) => {
   try {
     
     await deleteImage(params?.filename as string)

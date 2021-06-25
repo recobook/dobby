@@ -2,7 +2,7 @@ import { FormFile } from 'https://deno.land/x/multiparser@v2.1.0/mod.ts'
 import {Schema} from "https://deno.land/x/valivar@v6.2.11/mod.ts"
 import dataImage from "../datas/images.ts"
 
-export const addImage = async (files:FormFile[])=>{
+export const addImage = (files:FormFile[])=>{
 
     const schema = new Schema({
         name:{type:String,required: true},

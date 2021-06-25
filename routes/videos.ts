@@ -2,15 +2,14 @@ import {
   FormFile,
   multiParser,
 } from "https://deno.land/x/multiparser@v2.1.0/mod.ts";
-import { Router } from "https://deno.land/x/oak@v7.5.0/mod.ts";
+import { Router} from "https://deno.land/x/oak@v7.5.0/mod.ts";
 import { addVideo,deleteVideo } from "../services/videos.ts";
 import { Chunk } from "../utils/chunk-file.ts";
-
-
+import {core} from "../services/auth.ts"
 
 const route = new Router();
 
-route.post("/video", async ({ request,response }) => {
+route.post("/video",core,async ({ request,response }) => {
   try {
     const form = await multiParser(request.originalRequest);
     const files: FormFile[] = form?.files as unknown as FormFile[]
@@ -27,7 +26,7 @@ route.post("/video", async ({ request,response }) => {
 });
 
 
-route.delete("/video/:filename", async ({response,params}) => {
+route.delete("/video/:filename",core, async ({response,params}) => {
   try {
     
     await deleteVideo(params?.filename as string)
@@ -70,7 +69,7 @@ route.get("/videos/:filename", async (context)  => {
 
     context.response.body = await Chunk.open(`${Deno.cwd()}/storage/videos/${filename}`, start, end);
 
-  } catch (e) {
+  } catch (e)  {
 
     context.response.status = 404
     context.response.body = {status: false }    
@@ -78,3 +77,5 @@ route.get("/videos/:filename", async (context)  => {
 });
 
 export default route;
+
+
