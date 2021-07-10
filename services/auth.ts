@@ -3,7 +3,7 @@ import { Schema } from "https://deno.land/x/valivar@v6.2.11/mod.ts";
 import {Context,Status,STATUS_TEXT} from "https://deno.land/x/oak@v7.5.0/mod.ts";
 import {SERVICE_AUTH_KEY} from "../const.ts"
 
-export const core = async ({request,response}:Context,next:Function ) => {
+export const  core = async ({request,response}:Context,next:Function ) => {
 
   try {
     const token = await verify(

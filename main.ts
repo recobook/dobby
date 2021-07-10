@@ -1,4 +1,4 @@
-import { Application, send } from "https://deno.land/x/oak@v7.5.0/mod.ts";
+import { Application } from "https://deno.land/x/oak@v7.5.0/mod.ts";
 import routesImages from "./routes/images.ts";
 import usersImages from "./routes/users.ts"
 import videosImages from "./routes/videos.ts"
