@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.3'
 
 services:
   dobby: 
@@ -6,5 +6,7 @@ services:
     build: .
     ports: 
       - 1993:1993
+    volumes: 
+        - .:/app
     environment: 
-      SERVICE_AUTH_KEY: "jadson"
+      SERVICE_AUTH_KEY: "teste"
