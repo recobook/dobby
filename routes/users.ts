@@ -4,38 +4,36 @@ import {
   } from "https://deno.land/x/multiparser@v2.1.0/mod.ts";
   import { Router,send } from "https://deno.land/x/oak@v7.5.0/mod.ts";
   import { addImage,deleteImage } from "../services/users.ts";
-  import {core} from "../services/auth.ts"
+  
   
   const route = new Router();
   
-  route.post("/user", core,async ({ request,response }) => {
+  route.post("/user",async ({ request,response }) => {
     try {
       const form = await multiParser(request.originalRequest);
       const files: FormFile[] = form?.files as unknown as FormFile[]
   
       await addImage(files)
       
-      response.status = 200
-      response.body = {status: true}   
+      response.status = 200   
     } catch (e) {
       
       response.status = 500
-      response.body = {status: false }    
+      console.log(`ERROR: ${e}`)    
     }
   });
   
   
-  route.delete("/user/:filename", core,async ({response,params}) => {
+  route.delete("/user/:filename",async ({response,params}) => {
     try {
       
       await deleteImage(params?.filename as string)
       
-      response.status = 200
-      response.body = {status: true}   
+      response.status = 200   
     } catch (e) {
       
       response.status = 500
-      response.body = {status: false }    
+      console.log(`ERROR: ${e}`)   
     }
   });
   route.get("/users/:filename", async (context)  => {
@@ -49,7 +47,7 @@ import {
     } catch (e) {
       
       context.response.status = 404
-      context.response.body = {status: false }    
+      console.log(`ERROR: ${e}`)   
     }
   });
   

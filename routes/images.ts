@@ -14,12 +14,11 @@ route.post("/image",async ({ request,response},) => {
 
     await addImage(files)
     
-    response.status = 200
-    response.body = {status: true}   
+    response.status = 200   
   } catch (e) {
     
     response.status = 500
-    response.body = {status: false , error: e }    
+    console.log(`ERROR: ${e}`)    
   }
 });
 
@@ -30,11 +29,11 @@ route.delete("/image/:filename",async ({response,params}) => {
     await deleteImage(params?.filename as string)
     
     response.status = 200
-    response.body = {status: true}   
+     
   } catch (e) {
     
     response.status = 500
-    response.body = {status: false }    
+    console.log(`ERROR: ${e}`)
   }
 });
 route.get("/images/:filename", async (context)  => {
@@ -48,7 +47,7 @@ route.get("/images/:filename", async (context)  => {
   } catch (e) {
     
     context.response.status = 404
-    context.response.body = {status: false }    
+    console.log(`ERROR: ${e}`)  
   }
 });
 
