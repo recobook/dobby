@@ -16,7 +16,7 @@ export const addImage = async (files:FormFile[])=>{
         if(schema.validate(files[file] as any).length > 0) throw new Error("image not supported");
     }
 
-    return dataImage.addImage(files)
+    return await dataImage.addImage(files)
 }   
 
 export const deleteImage =  async (filename:string) => {
